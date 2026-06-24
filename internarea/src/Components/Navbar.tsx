@@ -89,7 +89,7 @@ const Navbar = () => {
 };
 
   // ---------------- LANGUAGE ----------------
-const handleLanguageChange = async (lang) => {
+const handleLanguageChange = async (lang: string) => {
 
   // close old popup
   setShowOtp(false);
