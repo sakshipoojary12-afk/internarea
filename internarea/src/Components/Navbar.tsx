@@ -71,12 +71,11 @@ const Navbar = () => {
       });
 
       toast.success("Logged in successfully");
-    } catch (error) {
-      if (error.code !== "auth/cancelled-popup-request") {
-        toast.error(error.code);
-      }
-    }
-  };
+    } catch (error: any) {
+  if (error?.code !== "auth/cancelled-popup-request") {
+    toast.error(error?.code || "Login failed");
+  }
+}
 
   const handlelogout = async () => {
 
