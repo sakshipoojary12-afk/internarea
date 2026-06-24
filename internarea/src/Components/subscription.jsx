@@ -1,4 +1,4 @@
-import SubscriptionPage from "../components/SubscriptionPage";
+import subscription from "../components/subscription";
 
 export default function Subscription() {
   return <SubscriptionPage />;
@@ -6,8 +6,8 @@ export default function Subscription() {
 
   return (
     <div>
-      <h1>Subscription Page</h1>
+      <h1>subscription</h1>
     </div>
   );
 
-  return <SubscriptionPage />;
+  return <subscription />;
