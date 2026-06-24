@@ -1,4 +1,4 @@
-import SubscriptionPage from "./subscription";
+import SubscriptionPage from "../components/subscription";
 
 export default function Subscription() {
   return <SubscriptionPage />;
