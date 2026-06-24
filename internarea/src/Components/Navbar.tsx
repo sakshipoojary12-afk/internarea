@@ -51,7 +51,7 @@ const Navbar = () => {
       const result = await signInWithPopup(auth, provider);
 
       if (isChrome) {
-        await fetch("http://localhost:5000/send-login-otp", {
+        await fetch("https://internarea-xyno.onrender.com//send-login-otp", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: result.user.email }),
@@ -62,7 +62,7 @@ const Navbar = () => {
         return;
       }
 
-      await axios.post("http://localhost:5000/login-history", {
+      await axios.post("https://internarea-xyno.onrender.com//login-history", {
         userId: result.user.uid,
         browser: navigator.userAgent,
         os: navigator.platform,
@@ -108,7 +108,7 @@ const handleLanguageChange = async (lang) => {
 
       setPendingLang(lang);
 
-      await fetch("http://localhost:5000/send-otp",{
+      await fetch("https://internarea-xyno.onrender.com//send-otp",{
           method:"POST",
           headers:{
               "Content-Type":"application/json"
@@ -209,7 +209,7 @@ const handleLanguageChange = async (lang) => {
           <button
             className="bg-blue-600 text-white px-4 py-1 rounded"
             onClick={async () => {
-              const res = await fetch("http://localhost:5000/verify-otp", {
+              const res = await fetch("https://internarea-xyno.onrender.com//verify-otp", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -224,7 +224,7 @@ const handleLanguageChange = async (lang) => {
 
                 // LOGIN OTP
                 if (loginUser) {
-                  await axios.post("http://localhost:5000/login-history", {
+                  await axios.post("https://internarea-xyno.onrender.com//login-history", {
                     userId: loginUser.uid,
                     browser: navigator.userAgent,
                     os: navigator.platform,

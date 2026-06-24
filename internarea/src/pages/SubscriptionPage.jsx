@@ -37,7 +37,7 @@ export default function SubscriptionPage() {
 
     try {
       const { data: order } = await axios.post(
-        "http://localhost:5000/api/payment/create-order",
+        "https://internarea-xyno.onrender.com//api/payment/create-order",
         {
           amount: plan.price,
         }
@@ -51,7 +51,7 @@ export default function SubscriptionPage() {
 
         handler: async function (response) {
           const verifyRes = await axios.post(
-            "http://localhost:5000/api/payment/verify",
+            "https://internarea-xyno.onrender.com//api/payment/verify",
             response
           );
 

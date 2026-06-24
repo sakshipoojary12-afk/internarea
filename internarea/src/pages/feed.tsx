@@ -27,7 +27,7 @@ const fetchPosts = async()=>{
 
 try{
 
-const res = await fetch("http://localhost:5000/api/post");
+const res = await fetch("https://internarea-xyno.onrender.com//api/post");
 const data = await res.json();
 
 setPosts(data);
@@ -81,7 +81,7 @@ formData.append("media",image);
 
 
 const res = await fetch(
-"http://localhost:5000/api/post",
+"https://internarea-xyno.onrender.com//api/post",
 {
 method:"POST",
 body:formData
@@ -121,7 +121,7 @@ const handleLike = async(post:any)=>{
 
 const res = await fetch(
 
-`http://localhost:5000/api/post/${post._id}/like`,
+`https://internarea-xyno.onrender.com//api/post/${post._id}/like`,
 
 {
 method:"PUT"
@@ -155,7 +155,7 @@ const handleShare = async(post:any)=>{
 
 const res = await fetch(
 
-`http://localhost:5000/api/post/${post._id}/share`,
+`https://internarea-xyno.onrender.com//api/post/${post._id}/share`,
 
 {
 method:"PUT"
@@ -196,7 +196,7 @@ if(!text) return;
 
 const res = await fetch(
 
-`http://localhost:5000/api/post/${post._id}/comment`,
+`https://internarea-xyno.onrender.com//api/post/${post._id}/comment`,
 
 {
 
@@ -251,7 +251,7 @@ setCommentTexts(prev=>({
 const handleDelete = async (id:any) => {
 
 const res = await fetch(
-`http://localhost:5000/api/post/${id}`,
+`https://internarea-xyno.onrender.com//api/post/${id}`,
 {
 method:"DELETE"
 }

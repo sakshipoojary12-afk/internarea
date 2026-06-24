@@ -64,7 +64,7 @@ router.post("/", upload.single("media"), async (req, res) => {
       content: req.body.content,
 
       media: req.file
-        ? `http://localhost:5000/uploads/${req.file.filename}`
+        ? `https://internarea-xyno.onrender.com//uploads/${req.file.filename}`
         : "",
 
       likes: 0,

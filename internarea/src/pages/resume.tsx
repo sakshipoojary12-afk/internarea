@@ -30,7 +30,7 @@ export default function ResumePage() {
   // ================= OTP =================
   const sendOtp = async () => {
     try {
-      await axios.post("http://localhost:5000/send-otp", {
+      await axios.post("https://internarea-xyno.onrender.com//send-otp", {
         email: form.email
       });
 
@@ -43,7 +43,7 @@ export default function ResumePage() {
 
   const verifyOtp = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/verify-otp", {
+      const res = await axios.post("https://internarea-xyno.onrender.com//verify-otp", {
         email: form.email,
         otp
       });
@@ -62,7 +62,7 @@ export default function ResumePage() {
   // ================= RESUME =================
   const generateResume = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/resume/generate", {
+      const res = await axios.post("https://internarea-xyno.onrender.com//resume/generate", {
         name: form.name,
         email: form.email,
         qualification: form.qualification,
@@ -82,7 +82,7 @@ export default function ResumePage() {
 const payNow = async () => {
   try {
     const { data } = await axios.post(
-      "http://localhost:5000/api/payment/create-order",
+      "https://internarea-xyno.onrender.com//api/payment/create-order",
       { amount: 50 }
     );
 
