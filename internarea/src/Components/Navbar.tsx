@@ -17,7 +17,7 @@ const Navbar = () => {
   const [showOtp, setShowOtp] = useState(false);
   const [otp, setOtp] = useState("");
   const [pendingLang, setPendingLang] = useState(null);
-  const [loginUser, setLoginUser] = useState(null);
+  const [loginUser, setLoginUser] = useState<any>(null);
 
   // ✅ FIX: restore language on refresh
   useEffect(() => {
