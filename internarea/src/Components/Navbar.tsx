@@ -16,7 +16,7 @@ const Navbar = () => {
 
   const [showOtp, setShowOtp] = useState(false);
   const [otp, setOtp] = useState("");
-  const [pendingLang, setPendingLang] = useState(null);
+  const [pendingLang, setPendingLang] = useState<any>(null);
   const [loginUser, setLoginUser] = useState<any>(null);
 
   // ✅ FIX: restore language on refresh
@@ -76,6 +76,7 @@ const Navbar = () => {
     toast.error(error?.code || "Login failed");
   }
 }
+};
 
   const handlelogout = async () => {
 

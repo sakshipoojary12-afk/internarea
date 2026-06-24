@@ -167,14 +167,13 @@ const index = () => {
       );
       toast.success("Application submit successfully");
       router.push("/job");
-    } catch (error) {
-  console.error(error);
-
+    } catch (error: any) {
   toast.error(
-    error.response?.data?.message ||
+    error?.response?.data?.message ||
     "Failed to submit application"
   );
 }
+  }
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <div className="bg-white rounded-lg shadow-lg overflow-hidden">

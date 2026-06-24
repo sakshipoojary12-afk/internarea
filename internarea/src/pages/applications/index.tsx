@@ -11,6 +11,7 @@ import {
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 // const Applications = [
 //   {
 //     _id: "1",
@@ -48,6 +49,7 @@ const getStatusColor = (status: any) => {
   }
 };
 const index = () => {
+  const { t } = useTranslation();
   const [searchTerm, setsearchTerm] = useState("");
   const [filter, setFilter] = useState("all");
   const [data, setdata] = useState<any>([]);

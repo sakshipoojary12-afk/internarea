@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 const plans = [
-  const { t } = useTranslation();
   { name: "subscription.free", price: 0, key: "FREE" },
   { name: "subscription.bronze", price: 100, key: "BRONZE" },
   { name: "subscription.silver", price: 300, key: "SILVER" },
@@ -11,23 +10,23 @@ const plans = [
 ];
 
 export default function SubscriptionPage() {
+  const { t } = useTranslation();
 
-  // ✅ FIX: hook inside component
   useEffect(() => {
-  const script = document.createElement("script");
-  script.src = "https://checkout.razorpay.com/v1/checkout.js";
-  script.async = true;
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
 
-  script.onload = () => {
-    console.log("Razorpay script loaded");
-  };
+    script.onload = () => {
+      console.log("Razorpay script loaded");
+    };
 
-  script.onerror = () => {
-    console.log("Razorpay script failed to load");
-  };
+    script.onerror = () => {
+      console.log("Razorpay script failed to load");
+    };
 
-  document.body.appendChild(script);
-}, []);
+    document.body.appendChild(script);
+  }, []);
 
   const handlePayment = async (plan) => {
     if (plan.price === 0) {

@@ -19,7 +19,7 @@ const index = () => {
   //     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=faces",
   // });
   const user=useSelector(selectuser)
-  const [loginHistory, setLoginHistory] = useState([]);
+  const [loginHistory, setLoginHistory] = useState<any[]>([]);
   useEffect(() => {
   fetchLoginHistory();
 }, []);
@@ -96,7 +96,7 @@ const fetchLoginHistory = async () => {
   </h2>
 
   <div className="space-y-3">
-    {loginHistory.map((item, index) => (
+    {loginHistory.map((item: any, index: number) => (
       <div
         key={index}
         className="border rounded-lg p-3"
