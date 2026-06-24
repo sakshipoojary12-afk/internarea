@@ -148,17 +148,14 @@ const handleLanguageChange = async (lang: string) => {
     {t("jobs")}
   </Link>
 
-  <Link href="/courses">
-    Courses
-  </Link>
 
   <Link href="/resume">
     Resume
   </Link>
 
   <Link href="/subscription">
-    Subscription
-  </Link>
+  Subscription
+</Link>
 
   <Link href="/dashboard">
     Dashboard
