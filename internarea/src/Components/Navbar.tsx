@@ -157,9 +157,6 @@ const handleLanguageChange = async (lang: string) => {
   Subscription
 </Link>
 
-  <Link href="/dashboard">
-    Dashboard
-  </Link>
 
 
   <div className="flex items-center bg-gray-100 rounded-full px-4 py-2">
