@@ -137,18 +137,43 @@ const handleLanguageChange = async (lang: string) => {
             </Link>
 
             {/* LINKS */}
-            <div className="hidden md:flex items-center space-x-8">
-              <Link href="/internship">{t("internships")}</Link>
-              <Link href="/job">{t("jobs")}</Link>
+            {/* LINKS */}
+<div className="hidden md:flex items-center space-x-6">
 
-              <div className="flex items-center bg-gray-100 rounded-full px-4 py-2">
-                <Search size={16} className="text-gray-400" />
-                <input
-                  placeholder={t("search")}
-                  className="ml-2 bg-transparent focus:outline-none text-sm w-48"
-                />
-              </div>
-            </div>
+  <Link href="/internship">
+    {t("internships")}
+  </Link>
+
+  <Link href="/job">
+    {t("jobs")}
+  </Link>
+
+  <Link href="/courses">
+    Courses
+  </Link>
+
+  <Link href="/resume">
+    Resume
+  </Link>
+
+  <Link href="/subscription">
+    Subscription
+  </Link>
+
+  <Link href="/dashboard">
+    Dashboard
+  </Link>
+
+
+  <div className="flex items-center bg-gray-100 rounded-full px-4 py-2">
+    <Search size={16} className="text-gray-400" />
+    <input
+      placeholder={t("search")}
+      className="ml-2 bg-transparent focus:outline-none text-sm w-40"
+    />
+  </div>
+
+</div>
 
             {/* RIGHT SIDE */}
             <div className="flex items-center space-x-4">
