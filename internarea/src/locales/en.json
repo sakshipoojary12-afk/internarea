@@ -1,0 +1,144 @@
+{
+  "welcome": "Welcome",
+  "login": "Continue with Google",
+  "register": "Register",
+  "internships": "Internships",
+  "jobs": "Jobs",
+  "search": "Search opportunities...",
+  "logout": "Logout",
+
+  "dreamCareer": "Make your dream career a reality",
+  "trending": "Trending on InternArea 🔥",
+  "startCareer": "Start Your Career Journey",
+  "learnBest": "Learn From The Best",
+  "growSkills": "Grow Your Skills",
+  "connectCompanies": "Connect With Top Companies",
+
+  "filters":"Filters",
+"clearAll":"Clear all",
+"category":"Category",
+"marketingExample":"e.g. Marketing Intern",
+"location":"Location",
+"locationExample":"e.g. Mumbai",
+"workFromHome":"Work from home",
+"partTime":"Part-time",
+"monthlyStipend":"Monthly Stipend (₹)",
+"showFilters":"Show Filters",
+"internshipsFound":"Internships found",
+"activelyHiring":"Actively Hiring",
+"startDate":"Start Date",
+"stipend":"Stipend",
+"postedRecently":"Posted recently",
+"viewDetails":"View Details",
+
+"annualSalary":"Annual Salary (₹ in lakhs)",
+"experience":"Experience",
+"experienceExample":"e.g. 2 years",
+"jobsFound":"Jobs found",
+"ctc":"CTC",
+
+"activeApplications":"Active Applications",
+"acceptedApplications":"Accepted Applications",
+"loginHistory":"Login History",
+"browser":"Browser",
+
+"os":"OS",
+"device":"Device",
+"ip":"IP",
+"loginTime":"Login Time",
+"viewApplications":"View Applications",
+
+
+"feed": {
+  "publicSpace": "Public Space",
+  "friends": "Friends",
+  "postsToday": "Posts Today",
+  "remaining": "Remaining",
+  "whatsOnYourMind": "What's on your mind?",
+  "createPost": "Create Post",
+  "like": "Like",
+  "share": "Share",
+  "comment": "Comment",
+  "writeComment": "Write comment",
+  "postingLimitReached": "Posting limit reached"
+},
+
+"forgot": {
+  "title": "Forgot Password",
+  "placeholder": "Enter email or phone",
+  "resetPassword": "Reset Password",
+  "enterEmailPhone": "Please enter email or phone number",
+  "validEmailPhone": "Enter valid email or 10-digit phone number",
+  "oncePerDay": "You can use this option only once per day.",
+  "newPassword": "Your new password is:"
+}
+,
+"resume": {
+  "title": "Resume Builder",
+  "premiumFeature": "Premium feature : ₹50 per resume · Auto-attached to your profile",
+
+  "details": "Details",
+  "verify": "Verify",
+  "payment": "Payment",
+  "resume": "Resume",
+
+  "personalInformation": "Personal Information",
+  "detailsAppear": "These details will appear on your resume",
+
+  "fullName": "Full Name *",
+  "phone": "Phone Number *",
+  "location": "Location",
+  "linkedin": "LinkedIn Profile",
+  "qualification": "Qualification *",
+  "summary": "Professional Summary",
+  "experience": "Experience *",
+
+  "continueVerification": "Continue to Verification →",
+
+  "emailVerification": "Email Verification",
+  "enterOtp": "Enter the OTP sent to your email",
+  "verifyOtp": "Verify OTP",
+
+  "paymentMessage": "OTP verified successfully. Complete payment to generate your resume.",
+
+  "premiumPlan": "Resume Builder Premium",
+  "price": "Price : ₹50",
+  "includes": "Includes:",
+
+  "professionalResume": "Professional Resume",
+  "autoAttach": "Auto attach to profile",
+  "unlimitedDownloads": "Unlimited downloads",
+
+  "pay": "Pay ₹50",
+
+  "generatedMessage": "Your resume has been created and attached to your profile.",
+
+  "otpSent": "OTP Sent",
+  "otpFailed": "Failed to send OTP",
+  "otpVerified": "OTP Verified",
+  "wrongOtp": "Wrong OTP",
+
+  "resumeGenerated": "Resume Generated",
+  "resumeFailed": "Resume Failed",
+
+  "paymentSuccess": "Payment Successful",
+  "paymentFailed": "Payment Failed"
+}
+,
+"subscription": {
+  "choosePlan": "Choose Plan",
+
+  "free": "Free Plan",
+  "bronze": "Bronze Plan",
+  "silver": "Silver Plan",
+  "gold": "Gold Plan",
+
+  "activateFree": "Activate Free",
+  "buyNow": "Buy Now",
+
+  "freeActivated": "Free plan activated!",
+  "paymentSuccess": "Payment Successful 🎉",
+  "paymentFailed": "Payment failed",
+  "razorpayFailed": "Razorpay failed to load. Refresh page."
+}
+}
