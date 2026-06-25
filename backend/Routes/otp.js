@@ -43,32 +43,33 @@ router.post("/verify-otp", (req, res) => {
   return res.json({ success: false });
 });
 router.post("/send-otp", async (req, res) => {
-  const { email } = req.body || {};
+  try {
+    const { email } = req.body || {};
 
-  if (!email) {
-    return res.status(400).json({
-      success: false,
-      message: "Email is required",
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        message: "Email is required",
+      });
+    }
+
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+    otpStore[email] = otp;
+
+    await apiInstance.sendTransacEmail({
+      sender: {
+        email: process.env.SENDER_EMAIL,
+        name: "InternArea",
+      },
+      to: [{ email }],
+      subject: "OTP Verification",
+      htmlContent: `<p>Your OTP is <b>${otp}</b></p>`,
     });
-  }
 
-  const otp = Math.floor(100000 + Math.random() * 900000).toString();
-
-  otpStore[email] = otp;
-
-  await apiInstance.sendTransacEmail({
-  sender: {
-    email: process.env.SENDER_EMAIL,
-    name: "InternArea",
-  },
-  to: [{ email }],
-  subject: "OTP Verification",
-  htmlContent: `<p>Your OTP is <b>${otp}</b></p>`,
-});
     res.json({ success: true });
   } catch (err) {
     console.log(err);
     res.json({ success: false, message: "Email failed" });
-  
+  }
 });
-module.exports = router;
