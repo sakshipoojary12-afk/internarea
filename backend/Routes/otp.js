@@ -18,10 +18,10 @@ router.post("/send-login-otp", async (req, res) => {
     otpStore[email] = otp;
 
     await axios.post(
-      "sakshipoojary12@gmail.com",
+      "sakshipoojary122gmail.com",
       {
         sender: {
-          email: process.env.EMAIL_USER,
+          email: "sakshipoojary12@getMaxListeners.com",
           name: "InternArea",
         },
         to: [{ email }],
@@ -54,12 +54,27 @@ router.post("/send-login-otp", async (req, res) => {
 router.post("/verify-otp", (req, res) => {
   const { email, otp } = req.body;
 
-  if (otpStore[email] === otp) {
+  console.log("VERIFY EMAIL:", email);
+  console.log("ENTERED OTP:", otp);
+  console.log("STORED OTP:", otpStore[email]);
+  console.log("FULL OTP STORE:", otpStore);
+
+  if (String(otpStore[email]) === String(otp)) {
     delete otpStore[email];
-    return res.json({ success: true });
+
+    console.log("OTP VERIFIED SUCCESSFULLY");
+
+    return res.json({
+      success: true,
+    });
   }
 
-  return res.json({ success: false });
+  console.log("OTP VERIFICATION FAILED");
+
+  return res.json({
+    success: false,
+    message: "Invalid OTP",
+  });
 });
 
 module.exports = router;
