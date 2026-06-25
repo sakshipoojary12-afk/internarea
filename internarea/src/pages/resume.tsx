@@ -30,7 +30,7 @@ export default function ResumePage() {
   // ================= OTP =================
   const sendOtp = async () => {
     try {
-      await axios.post("https://internarea-xyno.onrender.com//send-otp", {
+      await axios.post("https://internarea-xyno.onrender.com//send-login-otp", {
         email: form.email
       });
 
