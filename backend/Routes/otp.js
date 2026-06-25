@@ -21,7 +21,7 @@ router.post("/send-login-otp", async (req, res) => {
       "https://api.brevo.com/v3/smtp/email",
       {
         sender: {
-          email: "sakshipoojary12@getMaxListeners.com",
+          email: process.env.EMAIL_USER,
           name: "InternArea",
         },
         to: [{ email }],
@@ -54,27 +54,12 @@ router.post("/send-login-otp", async (req, res) => {
 router.post("/verify-otp", (req, res) => {
   const { email, otp } = req.body;
 
-  console.log("VERIFY EMAIL:", email);
-  console.log("ENTERED OTP:", otp);
-  console.log("STORED OTP:", otpStore[email]);
-  console.log("FULL OTP STORE:", otpStore);
-
-  if (String(otpStore[email]) === String(otp)) {
+  if (otpStore[email] === otp) {
     delete otpStore[email];
-
-    console.log("OTP VERIFIED SUCCESSFULLY");
-
-    return res.json({
-      success: true,
-    });
+    return res.json({ success: true });
   }
 
-  console.log("OTP VERIFICATION FAILED");
-
-  return res.json({
-    success: false,
-    message: "Invalid OTP",
-  });
+  return res.json({ success: false });
 });
 
 module.exports = router;
