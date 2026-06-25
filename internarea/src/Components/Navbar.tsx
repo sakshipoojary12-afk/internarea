@@ -148,6 +148,10 @@ const handleLanguageChange = async (lang: string) => {
     {t("jobs")}
   </Link>
 
+  <Link href="/feed">
+  Public Space
+</Link>
+
 <Link href="/forgot-password">
   Forgot-Password?
 </Link>
