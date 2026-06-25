@@ -4,21 +4,18 @@ const axios = require("axios");
 
 let otpStore = {};
 
-// SEND LOGIN OTP
+
+// Login OTP
 router.post("/send-login-otp", async (req, res) => {
   console.log("LOGIN OTP HIT");
+  console.log("EMAIL:", req.body.email);
+  console.log("SENDER:", process.env.EMAIL_USER);
 
   try {
     const { email } = req.body;
 
-    console.log("EMAIL:", email);
-
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-
     otpStore[email] = otp;
-
-    console.log("OTP GENERATED:", otp);
-    console.log("OTP STORE:", otpStore);
 
     await axios.post(
       "https://api.brevo.com/v3/smtp/email",
@@ -41,9 +38,7 @@ router.post("/send-login-otp", async (req, res) => {
 
     console.log("EMAIL SENT");
 
-    res.json({
-      success: true,
-    });
+    res.json({ success: true });
   } catch (err) {
     console.log(
       "BREVO ERROR:",
@@ -56,8 +51,6 @@ router.post("/send-login-otp", async (req, res) => {
     });
   }
 });
-
-// VERIFY OTP
 router.post("/verify-otp", (req, res) => {
   const { email, otp } = req.body;
 
