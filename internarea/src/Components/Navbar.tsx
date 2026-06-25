@@ -160,7 +160,7 @@ const handleLanguageChange = async (lang: string) => {
     Resume
   </Link>
 
-  <Link href="/subscriptionpage">
+  <Link href="/subscription">
   Subscription
 </Link>
 
