@@ -1,16 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const Brevo = require("@getbrevo/brevo");
-
-const apiInstance = new Brevo.TransactionalEmailsApi();
-
-apiInstance.setApiKey(
-  Brevo.TransactionalEmailsApiApiKeys.apiKey,
-  process.env.BREVO_API_KEY
-);
-
+const nodemailer = require("nodemailer");
 let otpStore = {};
-
 
 // SEND OTP
 router.post("/send-otp", async (req, res) => {
@@ -21,17 +12,11 @@ router.post("/send-otp", async (req, res) => {
 
     otpStore[email] = otp;
 
-    await apiInstance.sendTransacEmail({
-  sender: {
-    name: "InternArea",
-    email: process.env.SENDER_EMAIL,
-  },
-  to: [{ email }],
+    await transporter.sendMail({
+  from: process.env.EMAIL_USER,
+  to: email,
   subject: "OTP Verification",
-  htmlContent: `
-    <h2>OTP Verification</h2>
-    <p>Your OTP is <b>${otp}</b></p>
-  `,
+  html: `<h2>OTP Verification</h2><p>Your OTP is <b>${otp}</b></p>`,
 });
 
     console.log("OTP:", otp);
