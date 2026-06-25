@@ -108,7 +108,7 @@ const handleLanguageChange = async (lang: string) => {
 
       setPendingLang(lang);
 
-      await fetch("https://internarea-xyno.onrender.com//send-otp",{
+      await fetch("https://internarea-xyno.onrender.com/send-otp",{
           method:"POST",
           headers:{
               "Content-Type":"application/json"
@@ -235,7 +235,7 @@ const handleLanguageChange = async (lang: string) => {
           <button
             className="bg-blue-600 text-white px-4 py-1 rounded"
             onClick={async () => {
-              const res = await fetch("https://internarea-xyno.onrender.com//verify-otp", {
+              const res = await fetch("https://internarea-xyno.onrender.com/verify-otp", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -250,7 +250,7 @@ const handleLanguageChange = async (lang: string) => {
 
                 // LOGIN OTP
                 if (loginUser) {
-                  await axios.post("https://internarea-xyno.onrender.com//login-history", {
+                  await axios.post("https://internarea-xyno.onrender.com/login-history", {
                     userId: loginUser.uid,
                     browser: navigator.userAgent,
                     os: navigator.platform,
