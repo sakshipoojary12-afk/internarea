@@ -50,7 +50,7 @@ export default function SubscriptionPage() {
 
         handler: async function (response) {
           const verifyRes = await axios.post(
-            "https://internarea-xyno.onrender.com//api/payment/verify",
+            "https://internarea-xyno.onrender.com/api/payment/verify",
             response
           );
 
