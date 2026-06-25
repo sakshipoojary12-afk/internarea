@@ -71,3 +71,4 @@ app.post("/api/payment/create-order", async (req, res) => {
     });
   }
 });
+module.exports = router;

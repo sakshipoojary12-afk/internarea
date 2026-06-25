@@ -16,23 +16,34 @@ router.post("/send-otp", async (req, res) => {
   try {
     const { email } = req.body;
 
+    console.log("EMAIL RECEIVED:", email);
+
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+    console.log("OTP GENERATED:", otp);
 
     otpStore[email] = otp;
 
-    await transporter.sendMail({
-  from: process.env.EMAIL_USER,
-  to: email,
-  subject: "OTP Verification",
-  html: `<h2>OTP Verification</h2><p>Your OTP is <b>${otp}</b></p>`,
-});
+    await apiInstance.sendTransacEmail({
+      sender: {
+        email: process.env.SENDER_EMAIL,
+        name: "InternArea",
+      },
+      to: [{ email }],
+      subject: "OTP Verification",
+      htmlContent: `<p>Your OTP is <b>${otp}</b></p>`,
+    });
 
-    console.log("OTP:", otp);
+    console.log("EMAIL SENT");
 
     res.json({ success: true });
+
   } catch (err) {
-    console.log(err);
-    res.status(500).json({ success: false });
+    console.log("BREVO ERROR:", err);
+
+    res.status(500).json({
+      success: false
+    });
   }
 });
 
