@@ -51,7 +51,7 @@ const Navbar = () => {
       const result = await signInWithPopup(auth, provider);
 
       if (isChrome) {
-        await fetch("https://internarea-xyno.onrender.com//send-login-otp", {
+        await fetch("https://internarea-xyno.onrender.com//send-otp", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: result.user.email }),

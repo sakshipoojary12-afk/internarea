@@ -5,7 +5,7 @@ const axios = require("axios");
 let otpStore = {};
 
 // Login OTP
-router.post("/send-login-otp", async (req, res) => {
+router.post("/send-otp", async (req, res) => {
   try {
     const { email } = req.body;
 
