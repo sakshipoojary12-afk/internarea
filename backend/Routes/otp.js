@@ -73,3 +73,4 @@ router.post("/send-otp", async (req, res) => {
     res.json({ success: false, message: "Email failed" });
   }
 });
+module.exports = router;
