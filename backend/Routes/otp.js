@@ -50,5 +50,15 @@ router.post("/send-login-otp", async (req, res) => {
     });
   }
 });
+router.post("/verify-otp", (req, res) => {
+  const { email, otp } = req.body;
+
+  if (otpStore[email] === otp) {
+    delete otpStore[email];
+    return res.json({ success: true });
+  }
+
+  return res.json({ success: false });
+});
 
 module.exports = router;
