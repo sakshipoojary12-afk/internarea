@@ -18,7 +18,7 @@ router.post("/send-login-otp", async (req, res) => {
     otpStore[email] = otp;
 
     await axios.post(
-      "https://api.brevo.com/v3/smtp/email",
+      "sakshipoojary12@gmail.com",
       {
         sender: {
           email: process.env.EMAIL_USER,
