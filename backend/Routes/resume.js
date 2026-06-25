@@ -1,14 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const nodemailer = require("nodemailer");
+const axios = require("axios");
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
 let otpStore = {};
 
 // SEND OTP
@@ -24,25 +17,36 @@ router.post("/send-otp", async (req, res) => {
 
     otpStore[email] = otp;
 
-    await apiInstance.sendTransacEmail({
-      sender: {
-        email: process.env.SENDER_EMAIL,
-        name: "InternArea",
+    await axios.post(
+      "https://api.brevo.com/v3/smtp/email",
+      {
+        sender: {
+          email: process.env.EMAIL_USER,
+          name: "InternArea",
+        },
+        to: [{ email }],
+        subject: "OTP Verification",
+        htmlContent: `<p>Your OTP is <b>${otp}</b></p>`,
       },
-      to: [{ email }],
-      subject: "OTP Verification",
-      htmlContent: `<p>Your OTP is <b>${otp}</b></p>`,
-    });
+      {
+        headers: {
+          "api-key": process.env.BREVO_API_KEY,
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     console.log("EMAIL SENT");
 
     res.json({ success: true });
-
   } catch (err) {
-    console.log("BREVO ERROR:", err);
+    console.log(
+      "BREVO ERROR:",
+      err.response?.data || err.message
+    );
 
     res.status(500).json({
-      success: false
+      success: false,
     });
   }
 });
@@ -59,15 +63,18 @@ router.post("/verify-otp", (req, res) => {
   res.json({ success: false });
 });
 
+// RESUME GENERATION
 router.post("/generate", async (req, res) => {
   try {
     const { name, email, qualification, experience } = req.body;
 
     if (!email) {
-      return res.json({ success: false, message: "Email required" });
+      return res.json({
+        success: false,
+        message: "Email required",
+      });
     }
 
-    // 👉 here we simulate resume creation
     const resumeData = {
       name,
       email,
@@ -75,12 +82,8 @@ router.post("/generate", async (req, res) => {
       experience,
       createdAt: new Date(),
     };
-    console.log("RAZORPAY KEY:", process.env.RAZORPAY_KEY_ID);
 
     console.log("Resume Created:", resumeData);
-
-    // 👉 (OPTIONAL) save to DB later
-    // await User.updateOne({ email }, { resume: resumeData });
 
     res.json({
       success: true,
@@ -92,4 +95,5 @@ router.post("/generate", async (req, res) => {
     res.json({ success: false });
   }
 });
+
 module.exports = router;

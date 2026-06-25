@@ -1,37 +1,47 @@
 const express = require("express");
 const router = express.Router();
-const SibApiV3Sdk = require("@getbrevo/brevo");
-
-const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
-
-apiInstance.setApiKey(
-  SibApiV3Sdk.TransactionalEmailsApiApiKeys.apiKey,
-  process.env.BREVO_API_KEY
-);
-
+const axios = require("axios");
 
 let otpStore = {};
 
+// Login OTP
 router.post("/send-login-otp", async (req, res) => {
-  const { email } = req.body;
+  try {
+    const { email } = req.body;
 
-  const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    otpStore[email] = otp;
 
-  otpStore[email] = otp;
+    await axios.post(
+      "https://api.brevo.com/v3/smtp/email",
+      {
+        sender: {
+          email: process.env.EMAIL_USER,
+          name: "InternArea",
+        },
+        to: [{ email }],
+        subject: "Login OTP",
+        htmlContent: `<p>Your Login OTP is <b>${otp}</b></p>`,
+      },
+      {
+        headers: {
+          "api-key": process.env.BREVO_API_KEY,
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-  await apiInstance.sendTransacEmail({
-  sender: {
-    email: process.env.SENDER_EMAIL,
-    name: "InternArea",
-  },
-  to: [{ email }],
-  subject: "Login OTP",
-  htmlContent: `<p>Your Login OTP is <b>${otp}</b></p>`,
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Login OTP Error:", err.response?.data || err.message);
+    res.status(500).json({
+      success: false,
+      message: "Failed to send OTP",
+    });
+  }
 });
 
-  res.json({ success: true });
-});
-
+// Verify Login OTP
 router.post("/verify-otp", (req, res) => {
   const { email, otp } = req.body;
 
@@ -42,9 +52,11 @@ router.post("/verify-otp", (req, res) => {
 
   return res.json({ success: false });
 });
+
+// Signup OTP
 router.post("/send-otp", async (req, res) => {
   try {
-    const { email } = req.body || {};
+    const { email } = req.body;
 
     if (!email) {
       return res.status(400).json({
@@ -54,23 +66,36 @@ router.post("/send-otp", async (req, res) => {
     }
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-
     otpStore[email] = otp;
 
-    await apiInstance.sendTransacEmail({
-      sender: {
-        email: process.env.SENDER_EMAIL,
-        name: "InternArea",
+    await axios.post(
+      "https://api.brevo.com/v3/smtp/email",
+      {
+        sender: {
+          email: process.env.EMAIL_USER,
+          name: "InternArea",
+        },
+        to: [{ email }],
+        subject: "OTP Verification",
+        htmlContent: `<p>Your OTP is <b>${otp}</b></p>`,
       },
-      to: [{ email }],
-      subject: "OTP Verification",
-      htmlContent: `<p>Your OTP is <b>${otp}</b></p>`,
-    });
+      {
+        headers: {
+          "api-key": process.env.BREVO_API_KEY,
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     res.json({ success: true });
   } catch (err) {
-    console.log(err);
-    res.json({ success: false, message: "Email failed" });
+    console.error("Signup OTP Error:", err.response?.data || err.message);
+
+    res.status(500).json({
+      success: false,
+      message: "Email failed",
+    });
   }
 });
+
 module.exports = router;
