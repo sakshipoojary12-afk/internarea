@@ -51,7 +51,7 @@ const Navbar = () => {
       const result = await signInWithPopup(auth, provider);
 
       if (isChrome) {
-        await fetch("https://internarea-xyno.onrender.com//send-otp", {
+        await fetch("https://internarea-xyno.onrender.com/send-otp", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: result.user.email }),
@@ -62,7 +62,7 @@ const Navbar = () => {
         return;
       }
 
-      await axios.post("https://internarea-xyno.onrender.com//login-history", {
+      await axios.post("https://internarea-xyno.onrender.com/login-history", {
         userId: result.user.uid,
         browser: navigator.userAgent,
         os: navigator.platform,

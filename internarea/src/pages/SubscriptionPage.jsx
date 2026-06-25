@@ -36,7 +36,7 @@ export default function SubscriptionPage() {
 
     try {
       const { data: order } = await axios.post(
-        "https://internarea-xyno.onrender.com//api/payment/create-order",
+        "https://internarea-xyno.onrender.com/api/payment/create-order",
         {
           amount: plan.price,
         }
