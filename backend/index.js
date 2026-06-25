@@ -15,7 +15,10 @@ const port = 5000;
 const path = require("path");
 
 
-app.use(cors());
+app.use(cors({
+  origin:true,
+  credentials: true,
+}));
 app.use(bodyparser.json({ limit: "50mb" }));
 app.use(bodyparser.urlencoded({ extended: true, limit: "50mb" }));
 app.use("/subscription", subscriptionRoutes);
