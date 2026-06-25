@@ -21,7 +21,7 @@ router.post("/send-login-otp", async (req, res) => {
       "https://api.brevo.com/v3/smtp/email",
       {
         sender: {
-          email: process.env.EMAIL_USER,
+          email: "sakshipoojary12@getMaxListeners.com",
           name: "InternArea",
         },
         to: [{ email }],
