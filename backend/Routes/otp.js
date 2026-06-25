@@ -1,6 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const nodemailer = require("nodemailer");
+const SibApiV3Sdk = require("@getbrevo/brevo");
+
+const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+
+apiInstance.setApiKey(
+  SibApiV3Sdk.TransactionalEmailsApiApiKeys.apiKey,
+  process.env.BREVO_API_KEY
+);
 
 
 let otpStore = {};
@@ -12,20 +19,15 @@ router.post("/send-login-otp", async (req, res) => {
 
   otpStore[email] = otp;
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
-
-  await transporter.sendMail({
-    from: process.env.EMAIL_USER,
-    to: email,
-    subject: "Login OTP",
-    text: `Your Login OTP is ${otp}`,
-  });
+  await apiInstance.sendTransacEmail({
+  sender: {
+    email: process.env.SENDER_EMAIL,
+    name: "InternArea",
+  },
+  to: [{ email }],
+  subject: "Login OTP",
+  htmlContent: `<p>Your Login OTP is <b>${otp}</b></p>`,
+});
 
   res.json({ success: true });
 });
@@ -54,22 +56,15 @@ router.post("/send-otp", async (req, res) => {
 
   otpStore[email] = otp;
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
-
-  try {
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: "OTP Verification",
-      text: `Your OTP is ${otp}`,
-    });
-
+  await apiInstance.sendTransacEmail({
+  sender: {
+    email: process.env.SENDER_EMAIL,
+    name: "InternArea",
+  },
+  to: [{ email }],
+  subject: "OTP Verification",
+  htmlContent: `<p>Your OTP is <b>${otp}</b></p>`,
+});
     res.json({ success: true });
   } catch (err) {
     console.log(err);

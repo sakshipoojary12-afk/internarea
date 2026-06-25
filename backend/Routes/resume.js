@@ -1,16 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const nodemailer = require("nodemailer");
+const SibApiV3Sdk = require("@getbrevo/brevo");
+
+const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+
+apiInstance.setApiKey(
+  SibApiV3Sdk.TransactionalEmailsApiApiKeys.apiKey,
+  process.env.BREVO_API_KEY
+);
 
 let otpStore = {};
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
 
 // SEND OTP
 router.post("/send-otp", async (req, res) => {
@@ -21,12 +21,18 @@ router.post("/send-otp", async (req, res) => {
 
     otpStore[email] = otp;
 
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: "OTP Verification",
-      text: `Your OTP is ${otp}`,
-    });
+    await apiInstance.sendTransacEmail({
+  sender: {
+    name: "InternArea",
+    email: process.env.SENDER_EMAIL,
+  },
+  to: [{ email }],
+  subject: "OTP Verification",
+  htmlContent: `
+    <h2>OTP Verification</h2>
+    <p>Your OTP is <b>${otp}</b></p>
+  `,
+});
 
     console.log("OTP:", otp);
 
