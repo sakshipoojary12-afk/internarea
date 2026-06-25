@@ -55,8 +55,10 @@ router.post("/verify-otp", (req, res) => {
 
 // Signup OTP
 router.post("/send-otp", async (req, res) => {
+    console.log("SEND OTP ROUTE HIT");  
   try {
     const { email } = req.body;
+        console.log("EMAIL RECEIVED:", email);
 
     if (!email) {
       return res.status(400).json({
