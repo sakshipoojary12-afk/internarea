@@ -43,7 +43,7 @@ export default function ResumePage() {
 
   const verifyOtp = async () => {
     try {
-      const res = await axios.post("https://internarea-xyno.onrender.com//verify-otp", {
+      const res = await axios.post("https://internarea-xyno.onrender.com/verify-otp", {
         email: form.email,
         otp
       });
